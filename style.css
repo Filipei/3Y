@@ -1,0 +1,219 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --dark-color: #000;
+}
+body {
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    background-image: radial-gradient(ellipse at top, transparent 0%, var(--dark-color)), radial-gradient(ellipse at bottom, var(--dark-color), rgba(145, 233, 255, 0.2)), repeating-linear-gradient(220deg, black 0px, black 19px, transparent 19px, transparent 22px), repeating-linear-gradient(189deg, black 0px, black 19px, transparent 19px, transparent 22px), repeating-linear-gradient(148deg, black 0px, black 19px, transparent 19px, transparent 22px), linear-gradient(90deg, #00fffa, #f0f0f0);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0 10px; 
+    box-sizing: border-box;
+    
+}
+@keyframes flash {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.flash-active {
+    animation: flash 1s forwards;
+}
+
+@keyframes flower-bloom {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+#flower {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: url('URL_DA_SUA_IMAGEM_DE_FLOR') no-repeat center center / contain;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.flower-active {
+    animation: flower-bloom 2s forwards;
+    opacity: 1;
+}
+
+#contador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-family: Arial, sans-serif;
+}
+
+.time-block {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 14px;
+    color: white;
+}
+
+.video-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 560px;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 315px;
+    max-height: 100%;
+}
+#transcript{
+    font-size: 1.65em;
+    margin-top: -10%;
+}
+h2 {
+    font-size: 2em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid white;
+    animation: blink-caret 0.75s step-end infinite;
+}
+.Texto{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 30%;
+}
+h3{
+    color: #00d1d2;
+    font-size: 20px;
+    filter: drop-shadow(2px 2px 20px #00d1d2);
+}
+#desc{
+    margin-top: 10px;
+    filter: drop-shadow(1px 1px 5px white);
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #00d1d2 }
+}
+@media (max-width: 768px) {
+    .time-block {
+        width: 80px;
+        height: 80px;
+    }
+
+    .number {
+        font-size: 20px;
+    }
+
+    .label {
+        font-size: 12px;
+    }
+
+    .video-container iframe {
+        height: 280px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .time-block {
+        width: 60px;
+        height: 60px;
+    }
+    #transcript{
+        font-size: 1.45em;
+        margin-top: -10%;
+    }
+    .number {
+        font-size: 16px;
+    }
+    .video-container{
+        width: 350px;
+    }
+    .Texto{
+        width: 80%;
+    }
+    .label {
+        font-size: 10px;
+    }
+
+    .video-container iframe {
+        height: 200px; 
+    }
+}
+@media (max-width: 400px){
+    .time-block {
+        width: 60px;
+        height: 60px;
+    }
+    #transcript{
+        font-size: 1em;
+        margin-top: -10%;
+    }
+    .number {
+        font-size: 16px;
+    }
+    .video-container{
+        width: 300px;
+    }
+    .Texto{
+        width: 90%;
+    }
+    .label {
+        font-size: 10px;
+    }
+
+    .video-container iframe {
+        height: 200px; 
+    }
+}
