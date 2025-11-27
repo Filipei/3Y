@@ -1,4 +1,3 @@
-
 function updateCountdown() {
     var startDate = new Date('November 27, 2021 00:00:00');
     var now = new Date();
@@ -21,7 +20,6 @@ function updateCountdown() {
     var minutes = Math.floor((now - startDate) / (1000 * 60));
     startDate.setMinutes(startDate.getMinutes() + minutes);
 
-  
     var seconds = Math.floor((now - startDate) / 1000);
 
     document.getElementById('years').querySelector('.number').textContent = years;
@@ -32,29 +30,16 @@ function updateCountdown() {
 }
 
 setInterval(updateCountdown, 1000);
-
 updateCountdown();
-
-
-onload = () => {
-    const c = setTimeout(() => {
-      document.body.classList.remove("not-loaded");
-      clearTimeout(c);
-    }, 1000);
-  };
-
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var h2 = document.getElementById('transcript');
     var texts = [
-        "Eu te amo mais do que posso descrever", 
-        "I love you more than I can describe", 
-        "我愛你勝過我所能描述的"
+        "Eu te amo mais do que posso descrever"
     ];
     var index = 0;
-    var speed = 100; 
-    var pauseBetweenTexts = 3000; 
-    var erasingSpeed = 100; 
+    var speed = 100;
+    var pauseBetweenTexts = 3000;
+    var erasingSpeed = 100;
     var textIndex = 0;
     var isTyping = true;
 
@@ -85,7 +70,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     typeText();
 });
-document.addEventListener('DOMContentLoaded', function() {
+
+window.onload = () => {
+    const c = setTimeout(() => {
+        document.body.classList.remove("not-loaded");
+        clearTimeout(c);
+    }, 1000);
+};
+document.addEventListener('DOMContentLoaded', function () {
     const flashElement = document.createElement('div');
     flashElement.id = 'flash';
     document.body.appendChild(flashElement);
@@ -105,13 +97,60 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 flashElement.classList.remove('flash-active');
                 flowerElement.classList.remove('flower-active');
-            }, 2000); // Duração da animação da flor
+            }, 2000);
         } else {
-            setTimeout(checkNewYear, timeToNewYear + 1000); // Verifica novamente logo após a virada do ano
+            setTimeout(checkNewYear, timeToNewYear + 1000);
         }
     }
 
     checkNewYear();
+
+    // CONTROLE DE MÚSICA
+    const btn = document.getElementById("musicBtn");
+    const music = document.getElementById("bgMusic");
+    let playing = false;
+
+    // Função para tentar tocar a música
+    function playMusic() {
+        const playPromise = music.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Música começou a tocar
+                playing = true;
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                btn.style.background = '#ff6b6b';
+            }).catch(error => {
+                // Usuário não interagiu ainda ou há outro problema
+                console.log('Autoplay prevented:', error);
+                btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                btn.style.background = 'var(--neon)';
+                playing = false;
+            });
+        }
+    }
+
+    // Evento de clique no botão
+    btn.addEventListener("click", () => {
+        if (!playing) {
+            playMusic();
+        } else {
+            music.pause();
+            btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            btn.style.background = 'var(--neon)';
+            playing = false;
+        }
+    });
+
+    // Tentar tocar automaticamente quando a página carregar (pode não funcionar em alguns navegadores)
+    window.addEventListener('load', () => {
+        // Pequeno delay para garantir que tudo carregou
+        setTimeout(playMusic, 1000);
+    });
+
+    // Adicionar evento de toque para mobile
+    document.addEventListener('touchstart', function () {
+        // Essa interação pode ajudar a desbloquear o áudio
+    }, { once: true });
+
 });
-
-
